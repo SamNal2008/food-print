@@ -1,6 +1,28 @@
 import { useState } from "react";
 import { getLogMeal } from "../apis/logMeal";
-import { MyFoodPrint, computeMealScore } from "../calculator";
+import { EcoscoreGrade, MyFoodPrint, computeMealScore } from "../calculator";
+import ecoScoreA from '../assets/eco-score-A.jpg'
+import ecoScoreB from '../assets/eco-score-B.jpg'
+import ecoScoreC from '../assets/eco-score-C.jpg'
+import ecoScoreD from '../assets/eco-score-D.jpg'
+import ecoScoreE from '../assets/eco-score-E.jpg'
+
+const getEcoScoreImage = (ecoScoreGrade: EcoscoreGrade) => {
+  switch(ecoScoreGrade) {
+    case 'a':
+      return ecoScoreA
+    case 'b':
+      return ecoScoreB
+    case 'c':
+      return ecoScoreC
+    case 'd':
+      return ecoScoreD
+    case 'e':
+      return ecoScoreE
+    default:
+      break
+  }
+}
 
 interface Props {
   img?: string
@@ -9,13 +31,17 @@ interface Props {
 const Result = ({ score }: { score?: MyFoodPrint }) => {
   if (!score) return null;
   return (
-    <div>
+    <div className="App">
       Hello, your meal's Eco Score is: {score.overallScore}
       <br/>
       Here is the list of your ingredients meal : {score.ingredients.map((ingredient, index) => {
         return <li key={index}>{ingredient} : {score.ingredientScores[index]}</li>
       })}
+      { score!.overallScore && (
+        <img src={getEcoScoreImage(score.overallScore)} alt="eco-score" />
+      )}
     </div>
+    
   )
 }
 

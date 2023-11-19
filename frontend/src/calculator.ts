@@ -5,7 +5,7 @@ import { LogMealResponse } from './apis/logMeal';
 const OPEN_FOOD_FACTS_API = 'https://world.openfoodfacts.org/api/v2/search';
 const OPEN_FOOD_FACTS_FIELDS = ['count', 'product_name', 'product_name_en', 'ecoscore_grade', 'ecoscore_score', 'co2_total', 'values'];
 
-type EcoscoreGrade = 'a' | 'b' | 'c' | 'd' | 'e';
+export type EcoscoreGrade = 'a' | 'b' | 'c' | 'd' | 'e';
 
 const isWorstGrade = (baseGrade: EcoscoreGrade, targetGrade: EcoscoreGrade) => {
     const grades = ['a', 'b', 'c', 'd', 'e'];
