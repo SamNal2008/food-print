@@ -1,6 +1,6 @@
 import axios from 'axios';
-import logMealResponse from './apis/log-meal/decomposition.json';
-import openFood from './apis/open-food/banana-response.json';
+import { LogMealResponse } from './apis/logMeal';
+
 
 const OPEN_FOOD_FACTS_API = 'https://world.openfoodfacts.org/api/v2/search';
 const OPEN_FOOD_FACTS_FIELDS = ['count', 'product_name', 'product_name_en', 'ecoscore_grade', 'ecoscore_score', 'co2_total', 'values'];
@@ -32,48 +32,14 @@ interface OpenFoodResponse {
     products: Product[]
 }
 
-interface FoodFamily {
-    id: number,
-    name: string,
-    prob: number
-};
-
-interface FoodType {
-    id: number,
-    name: string
-}
-
-interface RecognitionResult {
-    id: number,
-    foodFamily: FoodFamily[],
-    foodType: FoodType,
-    name: string,
-    prob: number,
-    subclasses: RecognitionResult[]
-}
-
-interface SegmentationResult {
-    food_item_position: number,
-    recognition_results: RecognitionResult[],
-}
-
-interface LogMealResponse {
-    foodFamily: FoodFamily[],
-    foodType: FoodType,
-    imageId: number,
-    occasion: 'breakfast' | 'lunch' | 'dinner' | 'snack',
-    segmentation_results: SegmentationResult[],
-}
-
 const getOverallScore = (ingredientScores: EcoscoreGrade[]) => {
     return ingredientScores.reduce((worstScore, score) => {
         return isWorstGrade(worstScore, score) ? score : worstScore;
     }, 'a');
 }
 
-export const computeMealScore = async (): Promise<MyFoodPrint> => {
-    console.log(logMealResponse);
-    const ingredients = getIngredientList(logMealResponse as unknown as LogMealResponse);
+export const computeMealScore = async (logMealResponse: LogMealResponse): Promise<MyFoodPrint> => {
+    const ingredients = getIngredientList(logMealResponse);
     const ingredientScores = await getIngredientScores(ingredients);
     return {
         ingredients,

@@ -1,8 +1,6 @@
-import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 import ImageUpload from './components/ImageUpload';
-import EcoScoreButton from './components/EcoScoreButton';
 
 function App() {
   return (
