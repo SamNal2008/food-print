@@ -23,7 +23,7 @@ const ImageUpload = () => {
           </div>
         )}
         { image && (
-          <EcoScoreButton img={image as string}/>
+          <EcoScoreButton img={img}/>
         )}
     </div>
   );

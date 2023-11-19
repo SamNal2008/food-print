@@ -40,6 +40,7 @@ export interface LogMealResponse {
 
 
 export const getLogMeal = async (image: string) => {
+    console.log(image);
     try {
         const formData = new FormData();
         formData.append('image', image);
@@ -48,10 +49,9 @@ export const getLogMeal = async (image: string) => {
             Authorization: `Bearer ${API_KEY}`,
             'Content-Type': 'multipart/form-data',
             'Accept': 'application/json'
-        }
-    });
-    console.log(response.data);
-    return response.data;
+        }});
+        console.log(response.data);
+        return response.data;
     }
     catch (error) {
         console.log(error);
