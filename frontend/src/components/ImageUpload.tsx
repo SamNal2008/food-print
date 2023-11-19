@@ -17,10 +17,14 @@ const ImageUpload = () => {
     <div className="App">
         <h2>Please upload an Image of your meal:</h2>
         <input type="file" onChange={handleChange} />
-        <div>
-          <img src={image} alt="uploaded element" width={500} height={500}/>
-        </div>
-        <EcoScoreButton img={img}/>
+        { image && (
+          <div className="App">
+            <img src={image} alt="uploaded element" width={500} height={500}/>
+          </div>
+        )}
+        { image && (
+          <EcoScoreButton img={image as string}/>
+        )}
     </div>
   );
 }

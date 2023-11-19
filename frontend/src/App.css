@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  padding: 16px;
 }
 
 .App-logo {
@@ -36,3 +37,7 @@
     transform: rotate(360deg);
   }
 }
+
+/* .gap {
+  column-gap: 16px;
+} */
