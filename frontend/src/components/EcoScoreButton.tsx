@@ -21,11 +21,11 @@ const EcoScoreButton = ({ img }: Props) => {
   }
 
   return (
-    <>
+    <div className="App">
       <button onClick={ () => computeEcoScore(img)}>
         Click here to get your meal's Eco Score!
       </button>
-    </>
+    </div>
   )
 }
 
